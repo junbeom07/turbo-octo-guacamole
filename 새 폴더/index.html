@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스티커 웹캠</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+</head>
+<body>
+    <header>
+        <h1>스티커 웹캠</h1>
+        <nav>
+            <button id="usage-btn" class="btn"><i class="material-icons">help_outline</i> 사용법</button>
+            <button id="contact-btn" class="btn"><i class="material-icons">mail_outline</i> 연락처</button>
+        </nav>
+    </header>
+
+    <main>
+        <div id="webcam-container">
+            <video id="webcam" autoplay playsinline></video>
+            <canvas id="output-canvas"></canvas>
+        </div>
+        <div id="controls">
+            <label for="sticker-upload" class="btn btn-primary">
+                <i class="material-icons">file_upload</i> 스티커 선택
+                <input type="file" id="sticker-upload" accept="image/*" hidden>
+            </label>
+            <button id="apply-sticker" class="btn btn-primary"><i class="material-icons">add_photo_alternate</i> 스티커 적용</button>
+            <button id="reset-sticker" class="btn btn-secondary"><i class="material-icons">refresh</i> 리셋</button>
+            <button id="capture-frame" class="btn btn-secondary"><i class="material-icons">camera</i> 캡처</button>
+        </div>
+        <div id="sticker-controls">
+            <button id="size-increase" class="btn btn-secondary"><i class="material-icons">zoom_in</i></button>
+            <button id="size-decrease" class="btn btn-secondary"><i class="material-icons">zoom_out</i></button>
+            <button id="move-up" class="btn btn-secondary"><i class="material-icons">arrow_upward</i></button>
+            <button id="move-down" class="btn btn-secondary"><i class="material-icons">arrow_downward</i></button>
+            <button id="move-left" class="btn btn-secondary"><i class="material-icons">arrow_back</i></button>
+            <button id="move-right" class="btn btn-secondary"><i class="material-icons">arrow_forward</i></button>
+        </div>
+    </main>
+
+    <!-- 사용법 모달 -->
+    <div id="usage-modal" class="modal">
+        <div class="modal-content">
+            <h2>사용법 <i class="material-icons close">close</i></h2>
+            <div class="usage-steps">
+                <div class="step">
+                    <div class="step-content">
+                        <h3>1. 웹캠 허용</h3>
+                        <p>브라우저에서 웹캠 사용을 허용합니다.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>2. 스티커 선택</h3>
+                        <p>'스티커 선택' 버튼을 클릭하여 이미지를 업로드합니다.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-content">
+                        <h3>3. 스티커 적용</h3>
+                        <p>'스티커 적용' 버튼을 클릭하여 웹캠 화면에 스티커를 적용합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 연락처 모달 -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <h2>연락처 <i class="material-icons close">close</i></h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">이름</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">이메일</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" required></textarea>
+                    <label for="message">메시지</label>
+                </div>
+                <button type="submit" class="btn btn-primary">보내기</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

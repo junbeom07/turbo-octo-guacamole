@@ -1,0 +1,298 @@
+:root {
+    --primary-color: #4a90e2;
+    --primary-dark: #3a78c2;
+    --background: #f0f4f8;
+    --surface: #ffffff;
+    --on-surface: #333333;
+    --on-primary: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--background);
+    color: var(--on-surface);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--on-primary);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+#webcam-container {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 4 / 3;
+    background-color: var(--surface);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#webcam, #output-canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--on-primary);
+    flex: 1;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: var(--surface);
+    margin: 10% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.modal-content h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.close {
+    cursor: pointer;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: transparent;
+}
+
+.form-group label {
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+.form-group input:focus ~ label,
+.form-group input:valid ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:valid ~ label {
+    top: -1.25rem;
+    font-size: 0.75rem;
+    color: var(--primary-color);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-bottom-color: var(--primary-color);
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: var(--on-primary);
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    nav .btn {
+        flex: 1;
+    }
+
+    #controls {
+        flex-direction: column;
+    }
+
+    .modal-content {
+        margin: 20% auto;
+    }
+}
+
+/* 기존 스타일은 그대로 두고 아래 내용을 추가합니다 */
+
+.usage-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.step-icon {
+    background-color: var(--primary-color);
+    color: var(--on-primary);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.step-icon i {
+    font-size: 24px;
+}
+
+.step-content {
+    flex-grow: 1;
+}
+
+.step-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--on-surface); /* 검정색으로 변경 */
+    font-weight: 500; /* 글자 두께를 약간 줄여 가독성 향상 */
+}
+
+.step-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--on-surface);
+}
+
+.modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 480px) {
+    .step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .step-content h3 {
+        margin-top: 0.5rem;
+    }
+}
+
+#sticker-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: var(--on-surface);
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+}
